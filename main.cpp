@@ -1,9 +1,17 @@
 #include <iostream>
+#include <cstdio>
+#include <cstdlib>
+
+#include "Cell.h"
+#include "Grid.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
-    return 0;
+
+    Cell c(2, false);
+    c.setFlag(true);
+    std::cout << c.toString();
+
 }

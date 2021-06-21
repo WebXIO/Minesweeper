@@ -1,6 +1,6 @@
 #include "Grid.h"
 
-Grid::Grid(int sizeX, int sizeY) : sett(Beginner, sizeX, sizeY, 16) {
+Grid::Grid(Difficulty dif) : sett(dif) {
 
-    this->board = new Cell[sizeX * sizeY];
+    this->board = new Cell[8 * 8];
 }
