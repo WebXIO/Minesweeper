@@ -10,6 +10,12 @@ class Settings {
     public:
         Settings(Difficulty difficulty = Beginner);
 
+        int getNumberOfMines() const;
+        int getLength() const;
+        int getWidth() const;
+        int getPercentageMines() const;
+        Difficulty getDifficulty() const;
+
     private:
         Difficulty difficulty;
         int sizeLength;

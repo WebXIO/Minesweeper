@@ -21,3 +21,23 @@ Settings::Settings(Difficulty diff) : difficulty(diff) {
     srand(time(NULL));
     this->numberOfMines = ((this->sizeLength * this->sizeWidth) * (rand() % this->percentageMines)) / 100;
 }
+
+int Settings::getLength() const {
+    return this->sizeLength;
+}
+
+int Settings::getWidth() const {
+    return this->sizeWidth;
+}
+
+Difficulty Settings::getDifficulty() const {
+    return this->difficulty;
+}
+
+int Settings::getNumberOfMines() const {
+    return this->numberOfMines;
+}
+
+int Settings::getPercentageMines() const {
+    return this->percentageMines;
+}
