@@ -1,8 +1,8 @@
 #pragma once
 
 class Cell{
+    public:
 
-public:
-private:
+    private:
 
 };
