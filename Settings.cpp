@@ -20,6 +20,7 @@ Settings::Settings(Difficulty diff) : difficulty(diff) {
             this->percentageMines = 21;
 
     }
+    this->fullGridSize = this->sizeLength * this->sizeWidth;
     srand(time(NULL));
     this->numberOfMines = ((this->sizeLength * this->sizeWidth) * (rand() % this->percentageMines)) / 100;
 }

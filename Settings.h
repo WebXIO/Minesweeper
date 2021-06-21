@@ -20,6 +20,7 @@ class Settings {
         Difficulty difficulty;
         int sizeLength;
         int sizeWidth;
+        int fullGridSize;
         int numberOfMines;
         int percentageMines;
 };
