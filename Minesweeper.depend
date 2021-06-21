@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1624259426 source:c:\users\user\documents\github\minesweeper\cell.cpp
+	"Cell.h"
+
+1624259363 c:\users\user\documents\github\minesweeper\cell.h
+
+1514144174 source:c:\users\user\documents\github\minesweeper\main.cpp
+	<iostream>
+
