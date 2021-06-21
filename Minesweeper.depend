@@ -4,5 +4,10 @@
 1624259020 source:c:\users\kilia\desktop\projekte\minesweeper\main.cpp
 	<iostream>
 
-1624259298 source:c:\users\kilia\desktop\projekte\minesweeper\settings.cpp
+1624260063 source:c:\users\kilia\desktop\projekte\minesweeper\settings.cpp
+	"Settings.h"
+	<cstdlib>
+	<time.h>
+
+1624260028 c:\users\kilia\desktop\projekte\minesweeper\settings.h
 
