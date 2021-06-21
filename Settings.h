@@ -15,6 +15,7 @@ class Settings {
         int getWidth() const;
         int getPercentageMines() const;
         Difficulty getDifficulty() const;
+        int getFullSize() const;
 
     private:
         Difficulty difficulty;

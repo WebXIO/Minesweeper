@@ -44,3 +44,7 @@ int Settings::getNumberOfMines() const {
 int Settings::getPercentageMines() const {
     return this->percentageMines;
 }
+
+int Settings::getFullSize() const {
+    return this->fullGridSize;
+}

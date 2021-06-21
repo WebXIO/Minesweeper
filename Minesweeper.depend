@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1624261140 source:c:\users\kilia\desktop\projekte\minesweeper\cell.cpp
+1624261954 source:c:\users\kilia\desktop\projekte\minesweeper\cell.cpp
 	"Cell.h"
 	<cstring>
 	<cstdio>
@@ -11,17 +11,17 @@
 	"Cell.h"
 	"Grid.h"
 
-1624261430 source:c:\users\kilia\desktop\projekte\minesweeper\settings.cpp
+1624261935 source:c:\users\kilia\desktop\projekte\minesweeper\settings.cpp
 	"Settings.h"
 	<cstdlib>
 	<time.h>
 
-1624261894 c:\users\kilia\desktop\projekte\minesweeper\settings.h
+1624262086 c:\users\kilia\desktop\projekte\minesweeper\settings.h
 
 1624261140 c:\users\kilia\desktop\projekte\minesweeper\cell.h
 	<string>
 
-1624261140 c:\users\kilia\desktop\projekte\minesweeper\grid.h
+1624261954 c:\users\kilia\desktop\projekte\minesweeper\grid.h
 	"Cell.h"
 	"Settings.h"
 
