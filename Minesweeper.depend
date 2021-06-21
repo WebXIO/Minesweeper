@@ -25,3 +25,44 @@
 	"Cell.h"
 	"Settings.h"
 
+1624316593 source:c:\users\user\documents\github\minesweeper\cell.cpp
+	"Cell.h"
+	<cstring>
+	<cstdio>
+
+1624315900 c:\users\user\documents\github\minesweeper\cell.h
+	<string>
+
+1624317510 source:c:\users\user\documents\github\minesweeper\main.cpp
+	<iostream>
+	<cstdio>
+	<cstdlib>
+	"Cell.h"
+	"Grid.h"
+	"myconio.h"
+
+1624316747 c:\users\user\documents\github\minesweeper\grid.h
+	"myconio.h"
+	"Cell.h"
+	"Settings.h"
+
+1624262177 c:\users\user\documents\github\minesweeper\settings.h
+
+1624315637 source:c:\users\user\documents\github\minesweeper\settings.cpp
+	"Settings.h"
+	<cstdlib>
+	<time.h>
+
+1624317608 source:c:\users\user\documents\github\minesweeper\grid.cpp
+	"Grid.h"
+	"myconio.h"
+	<iostream>
+
+1624262766 source:c:\users\user\documents\github\minesweeper\myconio.cpp
+	<windows.h>
+	<cstdio>
+	<cstdlib>
+	"myconio.h"
+
+1624262975 c:\users\user\documents\github\minesweeper\myconio.h
+

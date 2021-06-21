@@ -5,9 +5,13 @@
 Cell::Cell(int number, bool mine) : number(number), mine(mine){
     this->visit = false;
     this->flag = false;
+    this->currentSign = 219;
 }
 void Cell::setNumber(int number){
     this->number = number;
+}
+void Cell::setCurrentSign(char currentSign){
+    this->currentSign = currentSign;
 }
 void Cell::setMine(bool mine){
     this->mine = mine;
@@ -22,6 +26,9 @@ void Cell::setFlag(bool flag){
 int Cell::getNumber() const{
     return this->number;
 }
+char Cell::getCurrentSign() const{
+    return this->currentSign;
+}
 bool Cell::isMine() const{
     return this->mine;
 }
@@ -30,21 +37,4 @@ bool Cell::isVisit() const{
 }
 bool Cell::isFlag() const{
     return this->flag;
-}
-std::string Cell::toString() const{
-
-    char str[100];
-
-
-    if(this->visit){
-        sprintf(str, "-----\n| %d | \n-----", this->number);
-    }else{
-        sprintf(str, "-----\n|   | \n-----");
-    }
-    if(this->flag){
-        sprintf(str, "-----\n| %c | \n-----", 178);
-    }
-
-    return std::string(str);
-
 }

@@ -34,7 +34,13 @@
 		</Compiler>
 		<Unit filename="Cell.cpp" />
 		<Unit filename="Cell.h" />
+		<Unit filename="Grid.cpp" />
+		<Unit filename="Grid.h" />
+		<Unit filename="Settings.cpp" />
+		<Unit filename="Settings.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="myconio.cpp" />
+		<Unit filename="myconio.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
