@@ -4,7 +4,7 @@
 	<cstring>
 	<cstdio>
 
-1624261282 source:c:\users\kilia\desktop\projekte\minesweeper\main.cpp
+1624261726 source:c:\users\kilia\desktop\projekte\minesweeper\main.cpp
 	<iostream>
 	<cstdio>
 	<cstdlib>
@@ -16,7 +16,7 @@
 	<cstdlib>
 	<time.h>
 
-1624260874 c:\users\kilia\desktop\projekte\minesweeper\settings.h
+1624261894 c:\users\kilia\desktop\projekte\minesweeper\settings.h
 
 1624261140 c:\users\kilia\desktop\projekte\minesweeper\cell.h
 	<string>
