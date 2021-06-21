@@ -1,16 +1,27 @@
 # depslib dependency file v1.0
-1624260110 source:c:\users\kilia\desktop\projekte\minesweeper\cell.cpp
+1624261140 source:c:\users\kilia\desktop\projekte\minesweeper\cell.cpp
 	"Cell.h"
+	<cstring>
+	<cstdio>
 
-1624259020 source:c:\users\kilia\desktop\projekte\minesweeper\main.cpp
+1624261282 source:c:\users\kilia\desktop\projekte\minesweeper\main.cpp
 	<iostream>
+	<cstdio>
+	<cstdlib>
+	"Cell.h"
+	"Grid.h"
 
-1624260063 source:c:\users\kilia\desktop\projekte\minesweeper\settings.cpp
+1624261430 source:c:\users\kilia\desktop\projekte\minesweeper\settings.cpp
 	"Settings.h"
 	<cstdlib>
 	<time.h>
 
-1624260028 c:\users\kilia\desktop\projekte\minesweeper\settings.h
+1624260874 c:\users\kilia\desktop\projekte\minesweeper\settings.h
 
-1624260120 c:\users\kilia\desktop\projekte\minesweeper\cell.h
+1624261140 c:\users\kilia\desktop\projekte\minesweeper\cell.h
+	<string>
+
+1624261140 c:\users\kilia\desktop\projekte\minesweeper\grid.h
+	"Cell.h"
+	"Settings.h"
 

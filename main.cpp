@@ -7,8 +7,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
 
     Cell c(2, false);
     c.setFlag(true);
