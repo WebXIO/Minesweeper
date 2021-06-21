@@ -42,7 +42,7 @@ std::string Cell::toString() const{
         sprintf(str, "-----\n|   | \n-----");
     }
     if(this->flag){
-        sprintf(str, "-----\n| %c | \n-----", 187);
+        sprintf(str, "-----\n| %c | \n-----", 178);
     }
 
     return std::string(str);
