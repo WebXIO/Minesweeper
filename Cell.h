@@ -10,12 +10,14 @@ public:
     void setMine(bool mine);
     void setVisit(bool visit);
     void setFlag(bool flag);
+    void setColor(int color);
 
     int getNumber() const;
     char getCurrentSign() const;
     bool isMine() const;
     bool isVisit() const;
     bool isFlag() const;
+    int getColor() const;
 
 private:
     int number;
@@ -23,4 +25,5 @@ private:
     bool mine;
     bool visit;
     bool flag;
+    int color;
 };

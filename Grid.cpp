@@ -26,6 +26,18 @@ Cell* Grid::getCell(int x, int y) const{
     return this->board[this->getIndex(x, y)];
 
 }
+void Grid::switchFlag(){
+    if(this->board[this->getIndex(this->currentX, this->currentY)]->isFlag()){
+        this->board[this->getIndex(this->currentX, this->currentY)]->setFlag(false);
+        this->board[this->getIndex(this->currentX, this->currentY)]->setCurrentSign(219);
+        this->board[this->getIndex(this->currentX, this->currentY)]->setColor(GREEN);
+    }
+    else{
+        this->board[this->getIndex(this->currentX, this->currentY)]->setFlag(true);
+        this->board[this->getIndex(this->currentX, this->currentY)]->setCurrentSign(178);
+        this->board[this->getIndex(this->currentX, this->currentY)]->setColor(BLUE);
+    }
+}
 int Grid::getIndex(int x, int y) const{
     return x + (y * this->sett.getLength());
 }
@@ -38,7 +50,7 @@ void Grid::render() const{
     for(int i = 0; i < this->sett.getFullSize(); i++){
         y = i / this->sett.getLength();
         x = i % this->sett.getLength();
-        this->drawBox(x + x, y, GREEN, this->board[i]->getCurrentSign());
+        this->drawBox(x + x, y, this->board[i]->getColor(), GREEN,this->board[i]->getCurrentSign());
     }
 
     this->drawBox(this->currentX + this->currentX, this->currentY, MAGENTA, GREEN, '+');

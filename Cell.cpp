@@ -1,4 +1,5 @@
 #include "Cell.h"
+#include "myconio.h"
 #include <cstring>
 #include <cstdio>
 
@@ -6,6 +7,7 @@ Cell::Cell(int number, bool mine) : number(number), mine(mine){
     this->visit = false;
     this->flag = false;
     this->currentSign = 219;
+    this->color = GREEN;
 }
 void Cell::setNumber(int number){
     this->number = number;
@@ -22,6 +24,9 @@ void Cell::setVisit(bool visit){
 void Cell::setFlag(bool flag){
     this->flag = flag;
 }
+void Cell::setColor(int color){
+    this->color = color;
+}
 
 int Cell::getNumber() const{
     return this->number;
@@ -37,4 +42,7 @@ bool Cell::isVisit() const{
 }
 bool Cell::isFlag() const{
     return this->flag;
+}
+int Cell::getColor() const{
+    return this->color;
 }

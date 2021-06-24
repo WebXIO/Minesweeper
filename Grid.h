@@ -10,6 +10,7 @@ public:
 
     Cell* getCell(int x, int y) const;
     void moveCursor(int pushX, int pushY);
+    void switchFlag();
 
     void render() const;
 private:

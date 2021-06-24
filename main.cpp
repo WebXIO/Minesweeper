@@ -28,13 +28,15 @@ char move(Grid &g){
     case 'd':
         g.moveCursor(1, 0);
         break;
+    case 13:
+        g.switchFlag();
     }
 
     return sign;
 }
 int main() {
     char check;
-    Grid g(Beginner);
+    Grid g(Professional);
     while(check != 27){
 
         g.render();
