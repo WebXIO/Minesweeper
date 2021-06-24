@@ -7,6 +7,7 @@ public:
 
     void setNumber(int number);
     void setCurrentSign(char currentSign);
+    void setLastSign(char lastSign);
     void setMine(bool mine);
     void setVisit(bool visit);
     void setFlag(bool flag);
@@ -14,14 +15,18 @@ public:
 
     int getNumber() const;
     char getCurrentSign() const;
+    char getLastSign() const;
     bool isMine() const;
     bool isVisit() const;
     bool isFlag() const;
     int getColor() const;
 
+    bool canOpen() const;
+
 private:
     int number;
     char currentSign;
+    char lastSign;
     bool mine;
     bool visit;
     bool flag;
