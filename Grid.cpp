@@ -55,14 +55,35 @@ void Grid::openField(){
     }else{
         this->board[this->getIndex(this->currentX, this->currentY)]->setColor(BROWN);
         this->board[this->getIndex(this->currentX, this->currentY)]->setVisit(true);
+        if(this->countBombs() > 0){
+            this->board[this->getIndex(this->currentX, this->currentY)]->setCurrentSign(this->countBombs() + 48);
+            this->board[this->getIndex(this->currentX, this->currentY)]->setNumber(this->countBombs());
+
+        }
     }
+
+}
+int Grid::countBombs() const{
+    int counter = 0;
+
+    if(this->inRange(this->currentX - 1, this->currentY - 1) && this->board[this->getIndex(this->currentX - 1, this->currentY - 1)]->isMine()) counter++; //UP Left
+    if(this->inRange(this->currentX, this->currentY - 1)     && this->board[this->getIndex(this->currentX, this->currentY - 1)]->isMine()) counter++; //UP Middle
+    if(this->inRange(this->currentX + 1, this->currentY - 1) && this->board[this->getIndex(this->currentX + 1, this->currentY - 1)]->isMine()) counter++; //UP Right
+    if(this->inRange(this->currentX - 1, this->currentY)     && this->board[this->getIndex(this->currentX - 1, this->currentY)]->isMine() ) counter++; //Middle Left
+    if(this->inRange(this->currentX, this->currentY)         && this->board[this->getIndex(this->currentX, this->currentY)]->isMine() ) counter++; //Middle
+    if(this->inRange(this->currentX + 1, this->currentY)     && this->board[this->getIndex(this->currentX + 1, this->currentY)]->isMine()) counter++; //Middle Right
+    if(this->inRange(this->currentX - 1, this->currentY + 1) && this->board[this->getIndex(this->currentX - 1, this->currentY + 1)]->isMine()) counter++; //Down Left
+    if(this->inRange(this->currentX, this->currentY + 1)     && this->board[this->getIndex(this->currentX, this->currentY + 1)]->isMine()) counter++; //Down Middle
+    if(this->inRange(this->currentX + 1, this->currentY + 1) && this->board[this->getIndex(this->currentX + 1, this->currentY + 1)]->isMine()) counter++; //Down Right
+
+    return counter;
 
 }
 int Grid::getIndex(int x, int y) const{
     return x + (y * this->sett.getLength());
 }
 bool Grid::inRange(int x, int y) const{
-   if(x > this->sett.getLength() || y > this->sett.getWidth() ||x < 0 || y < 0) return false;
+   if(x > this->sett.getLength() - 1 || y > this->sett.getWidth() - 1 || x < 0 || y < 0) return false;
    return true;
 }
 void Grid::render() const{
@@ -85,7 +106,6 @@ void Grid::render() const{
     this->drawBox(this->currentX + this->currentX, this->currentY, MAGENTA, GREEN, '+');
     gotoxy(this->sett.getLength() * 2 + 5, 1);
     std::cout << this->flagCounter << " / " << this->sett.getNumberOfMines() << " Flags ( " << (char) 178 << (char) 178 <<" )";
-
 }
 void Grid::drawBox(int x, int y, int color, int bgC,char sign) const{
     setColorAndBackground(color, bgC);
@@ -97,10 +117,7 @@ void Grid::moveCursor(int pushX, int pushY){
     int newX = this->currentX + pushX;
     int newY = this->currentY + pushY;
 
-    if(   newX < 0
-       || newX > this->sett.getLength() - 1
-       || newY < 0
-       || newY > this->sett.getWidth() - 1) return;
+    if(!this->inRange(newX, newY)) return;
 
     this->currentCell = this->board[this->getIndex(newX, newY)];
     this->currentX += pushX;

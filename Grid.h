@@ -28,4 +28,5 @@ private:
     bool inRange(int x, int y) const;
     void drawBox(int x, int y, int color = GREEN, int bgC = GREEN, char sign = 219) const;
     void setRandomMines();
+    int countBombs() const;
 };
