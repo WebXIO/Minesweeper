@@ -30,6 +30,10 @@ char move(Grid &g){
         break;
     case 13:
         g.switchFlag();
+        break;
+    case 32:
+        g.openField();
+        break;
     }
 
     return sign;
