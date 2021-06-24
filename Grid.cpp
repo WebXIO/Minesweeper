@@ -14,7 +14,7 @@ Grid::Grid(Difficulty dif, std::string label) : sett(dif), label(label){
     this->currentCell = this->board[0];
     this->currentX = 0;
     this->currentY = 0;
-    this->bombCounter = 0;
+    this->rightBombCounter = 0;
     this->flagCounter = 0;
 
     this->setRandomMines();
@@ -38,15 +38,18 @@ Cell* Grid::getCell(int x, int y) const{
 }
 void Grid::switchFlag(){
 
-    if(this->board[this->getIndex(this->currentX, this->currentY)]->isVisit() || this->flagCounter > this->sett.getNumberOfMines()) return;
+
 
     if(this->board[this->getIndex(this->currentX, this->currentY)]->isFlag()){
+        if(this->board[this->getIndex(this->currentX, this->currentY)]->isMine()) this->rightBombCounter--;
         this->board[this->getIndex(this->currentX, this->currentY)]->setFlag(false);
         this->board[this->getIndex(this->currentX, this->currentY)]->setCurrentSign(this->board[this->getIndex(this->currentX, this->currentY)]->getLastSign());
         this->board[this->getIndex(this->currentX, this->currentY)]->setColor(GREEN);
         this->flagCounter--;
     }
     else{
+        if(this->board[this->getIndex(this->currentX, this->currentY)]->isVisit() || this->flagCounter > this->sett.getNumberOfMines() - 1) return;
+        if(this->board[this->getIndex(this->currentX, this->currentY)]->isMine()) this->rightBombCounter++;
         this->board[this->getIndex(this->currentX, this->currentY)]->setFlag(true);
         this->board[this->getIndex(this->currentX, this->currentY)]->setCurrentSign(178);
         this->board[this->getIndex(this->currentX, this->currentY)]->setColor(BLUE);
@@ -91,8 +94,9 @@ bool Grid::inRange(int x, int y) const{
 }
 void Grid::render() const{
     int y, x;
-    gotoxy(this->sett.getLength() - (this->label.length() / 2), 0);
-    std::cout << this->label;
+
+    this->displayLabel();
+
     for(int i = 0; i < this->sett.getFullSize(); i++){
         y = i / this->sett.getLength() + 1;
         x = i % this->sett.getLength() + 1;
@@ -101,16 +105,28 @@ void Grid::render() const{
             if(this->board[i]->getNumber() > 0){
                 this->drawBox(x + x, y, BLACK, BROWN,this->board[i]->getCurrentSign());
             }else{
-                this->drawBox(x + x, y, this->board[i]->getColor(), BROWN,this->board[i]->getCurrentSign());
+                this->drawBox(x + x, y, this->board[i]->getColor(), this->board[i]->getBgC(),this->board[i]->getCurrentSign());
             }
         }else{
-            this->drawBox(x + x, y, this->board[i]->getColor(), GREEN,this->board[i]->getCurrentSign());
+            this->drawBox(x + x, y, this->board[i]->getColor(), this->board[i]->getBgC(),this->board[i]->getCurrentSign());
         }
     }
 
-    if(this->showCursor) this->drawBox(this->currentX + this->currentX + 2, this->currentY + 1, MAGENTA, GREEN, '+');
+    if(this->showCursor) this->drawBox(this->currentX + this->currentX + 2, this->currentY + 1, MAGENTA, this->board[this->getIndex(this->currentX, this->currentY)]->getBgC(), '+');
     gotoxy(this->sett.getLength() * 2 + 5, 1);
     std::cout << this->flagCounter << " / " << this->sett.getNumberOfMines() << " Flags ( " << (char) 178 << (char) 178 <<" )";
+    gotoxy(this->sett.getLength() * 2 + 5, 2);
+    std::cout << "Dev Tools {";
+    gotoxy(this->sett.getLength() * 2 + 5, 3);
+    std::cout << "   RightBombsCounter: " << this->rightBombCounter;
+    gotoxy(this->sett.getLength() * 2 + 5, 4);
+    std::cout << "}";
+}
+void Grid::displayLabel() const{
+    for(int i = 0; i < (int)(this->label.length()); i++){
+        gotoxy(this->sett.getLength() - (this->label.length() / 2) + i + 2, 0);
+        std::cout << this->label[i];
+    }
 }
 void Grid::drawBox(int x, int y, int color, int bgC,char sign) const{
     setColorAndBackground(color, bgC);
@@ -185,6 +201,7 @@ void Grid::openFields(int x, int y){
 
     this->board[this->getIndex(x, y)]->setVisit(true);
     this->board[this->getIndex(x, y)]->setColor(BROWN);
+    this->board[this->getIndex(x, y)]->setBgC(BROWN);
 
     if(this->board[this->getIndex(x, y)]->getNumber() == 0){
         int bX = x + 1,

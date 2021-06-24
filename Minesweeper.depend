@@ -68,18 +68,18 @@
 
 1624262975 c:\users\user\documents\github\minesweeper\myconio.h
 
-1624580353 source:d:\code_blocks\workspace\c++\minesweeper\cell.cpp
+1624581237 source:d:\code_blocks\workspace\c++\minesweeper\cell.cpp
 	"Cell.h"
 	"myconio.h"
 	<cstring>
 	<cstdio>
 
-1624580234 d:\code_blocks\workspace\c++\minesweeper\cell.h
+1624581186 d:\code_blocks\workspace\c++\minesweeper\cell.h
 	<string>
 
 1624476360 d:\code_blocks\workspace\c++\minesweeper\myconio.h
 
-1624577299 source:d:\code_blocks\workspace\c++\minesweeper\main.cpp
+1624580708 source:d:\code_blocks\workspace\c++\minesweeper\main.cpp
 	<iostream>
 	<cstdio>
 	<cstdlib>
@@ -88,14 +88,12 @@
 	"Cell.h"
 	"Grid.h"
 	"myconio.h"
-	"Stack.h"
 
-1624579106 d:\code_blocks\workspace\c++\minesweeper\grid.h
+1624581786 d:\code_blocks\workspace\c++\minesweeper\grid.h
 	"myconio.h"
 	"Cell.h"
 	"Settings.h"
 	<string>
-	"Stack.h"
 
 1624476360 d:\code_blocks\workspace\c++\minesweeper\settings.h
 
@@ -110,7 +108,7 @@
 	<cstdlib>
 	<time.h>
 
-1624580380 source:d:\code_blocks\workspace\c++\minesweeper\grid.cpp
+1624581977 source:d:\code_blocks\workspace\c++\minesweeper\grid.cpp
 	"Grid.h"
 	"myconio.h"
 	<time.h>
@@ -120,9 +118,9 @@
 
 1624574824 source:d:\code_blocks\workspace\c++\minesweeper\gamemanager.cpp
 
-1624576150 d:\code_blocks\workspace\c++\minesweeper\stack.h
+1624580695 d:\code_blocks\workspace\c++\minesweeper\stack.h
 
-1624577193 source:d:\code_blocks\workspace\c++\minesweeper\stack.cpp
+1624580697 source:d:\code_blocks\workspace\c++\minesweeper\stack.cpp
 	"Stack.h"
 	<iostream>
 

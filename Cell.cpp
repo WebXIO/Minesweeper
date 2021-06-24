@@ -9,6 +9,7 @@ Cell::Cell(int number, bool mine) : number(number), mine(mine){
     this->currentSign = 219;
     this->lastSign = currentSign;
     this->color = GREEN;
+    this->bgC = GREEN;
 }
 void Cell::setNumber(int number){
     this->number = number;
@@ -32,10 +33,13 @@ void Cell::setFlag(bool flag){
 void Cell::setColor(int color){
     this->color = color;
 }
-
+void Cell::setBgC(int bgC){
+    this->bgC = bgC;
+}
 int Cell::getNumber() const{
     return this->number;
 }
+
 char Cell::getCurrentSign() const{
     return this->currentSign;
 }
@@ -53,6 +57,9 @@ bool Cell::isFlag() const{
 }
 int Cell::getColor() const{
     return this->color;
+}
+int Cell::getBgC() const{
+    return this->bgC;
 }
 
 bool Cell::canOpen() const{

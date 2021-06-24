@@ -3,7 +3,6 @@
 #include "Cell.h"
 #include "Settings.h"
 #include <string>
-#include "Stack.h"
 
 class Grid{
 public:
@@ -27,7 +26,7 @@ private:
     int currentX;
     int currentY;
     Settings sett;
-    int bombCounter;
+    int rightBombCounter;
     int flagCounter;
     bool showCursor;
     std::string label;
@@ -40,4 +39,5 @@ private:
     void showAllBombs();
     void openFields(int x, int y);
     void setNumbers();
+    void displayLabel() const;
 };

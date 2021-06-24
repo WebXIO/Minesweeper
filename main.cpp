@@ -7,7 +7,6 @@
 #include "Cell.h"
 #include "Grid.h"
 #include "myconio.h"
-#include "Stack.h"
 
 using namespace std;
 
@@ -43,7 +42,7 @@ char move(Grid &g){
 int main() {
 
     char check;
-    Grid g(Beginner);
+    Grid g(Professional);
     while(check != 27){
 
         g.render();

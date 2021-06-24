@@ -12,6 +12,7 @@ public:
     void setVisit(bool visit);
     void setFlag(bool flag);
     void setColor(int color);
+    void setBgC(int bgC);
 
     int getNumber() const;
     char getCurrentSign() const;
@@ -20,7 +21,7 @@ public:
     bool isVisit() const;
     bool isFlag() const;
     int getColor() const;
-
+    int getBgC() const;
     bool canOpen() const;
 
 private:
@@ -30,5 +31,7 @@ private:
     bool mine;
     bool visit;
     bool flag;
+
     int color;
+    int bgC;
 };
