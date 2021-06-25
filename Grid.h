@@ -35,6 +35,7 @@ private:
     int getIndex(int x, int y) const;
     bool inRange(int x, int y) const;
     void drawBox(int x, int y, int color = GREEN, int bgC = GREEN, char sign = 219) const;
+    void drawNumber(int x, int y, int number) const;
     void setRandomMines();
     int countBombs() const;
     void showAllBombs();

@@ -102,7 +102,8 @@ void Grid::render() const{
 
         if(this->board[i]->isVisit()){
             if(this->board[i]->getNumber() > 0){
-                this->drawBox(x + x, y, BLACK, BROWN,this->board[i]->getCurrentSign());
+                //this->drawBox(x + x, y, BLACK, BROWN,this->board[i]->getCurrentSign());
+                this->drawNumber(x + x, y, this->board[i]->getNumber());
             }else{
                 this->drawBox(x + x, y, this->board[i]->getColor(), this->board[i]->getBgC(),this->board[i]->getCurrentSign());
             }
@@ -135,6 +136,14 @@ void Grid::drawBox(int x, int y, int color, int bgC,char sign) const{
     setColorAndBackground(color, bgC);
     gotoxy(x, y);
     std::cout << sign << sign;
+    setColorAndBackground(WHITE, BLACK);
+}
+void Grid::drawNumber(int x, int y, int number) const{
+    setColorAndBackground(BLACK, BROWN);
+    gotoxy(x, y);
+    std::cout << number;
+    setColor(BROWN);
+    std::cout << (char) 219;
     setColorAndBackground(WHITE, BLACK);
 }
 void Grid::moveCursor(int pushX, int pushY){

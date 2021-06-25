@@ -42,7 +42,7 @@ char move(Grid &g){
 int main() {
 
     char check;
-    Grid g(Beginner);
+    Grid g(Professional);
 
     while(check != 27 && !g.checkWon()){
 
