@@ -22,7 +22,6 @@ public:
     void render() const;
 private:
     Cell* *board;
-    Cell* currentCell;
 
     int currentX;
     int currentY;

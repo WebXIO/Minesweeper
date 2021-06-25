@@ -11,7 +11,6 @@ Grid::Grid(Difficulty dif, std::string label) : sett(dif), label(label){
     for(int i = 0; i < this->sett.getFullSize(); i++){
         this->board[i]  = new Cell(0, false);
     }
-    this->currentCell = this->board[0];
     this->currentX = 0;
     this->currentY = 0;
     this->rightBombCounter = 0;
@@ -28,7 +27,6 @@ Grid::~Grid(){
         delete this->board[i];
     }
     delete[] board;
-    delete currentCell;
 }
 Cell* Grid::getCell(int x, int y) const{
 
@@ -145,7 +143,6 @@ void Grid::moveCursor(int pushX, int pushY){
 
     if(!this->inRange(newX, newY)) return;
 
-    this->currentCell = this->board[this->getIndex(newX, newY)];
     this->currentX += pushX;
     this->currentY += pushY;
 

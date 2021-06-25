@@ -43,11 +43,14 @@ int main() {
 
     char check;
     Grid g(Beginner);
+
     while(check != 27 && !g.checkWon()){
 
         g.render();
         check = move(g);
     }
+
+
     system("cls");
     if(g.checkWon())
         g.setLabel("G A M E  O V E R ! W I N");
@@ -55,5 +58,4 @@ int main() {
         g.setLabel("G A M E  O V E R ! L O S E");
     g.render();
     std::cin.get();
-
 }
