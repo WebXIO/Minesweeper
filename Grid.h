@@ -13,6 +13,7 @@ public:
     void moveCursor(int pushX, int pushY);
     void switchFlag();
     bool checkField();
+    bool checkWon() const;
 
     void setLabel(std::string label);
 
@@ -28,6 +29,7 @@ private:
     Settings sett;
     int rightBombCounter;
     int flagCounter;
+    int openFieldCounter;
     bool showCursor;
     std::string label;
 

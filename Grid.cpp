@@ -16,6 +16,7 @@ Grid::Grid(Difficulty dif, std::string label) : sett(dif), label(label){
     this->currentY = 0;
     this->rightBombCounter = 0;
     this->flagCounter = 0;
+    this->openFieldCounter = 0;
 
     this->setRandomMines();
     this->setNumbers();
@@ -63,7 +64,7 @@ bool Grid::checkField(){
         this->showCursor = false;
         this->showAllBombs();
         return true;
-    }else{
+    }else if(!this->board[this->getIndex(this->currentX, this->currentY)]->isVisit()){
         this->openFields(this->currentX, this->currentY);
     }
     return false;
@@ -120,6 +121,10 @@ void Grid::render() const{
     gotoxy(this->sett.getLength() * 2 + 5, 3);
     std::cout << "   RightBombsCounter: " << this->rightBombCounter;
     gotoxy(this->sett.getLength() * 2 + 5, 4);
+    std::cout << "   openFieldCounter: " << this->openFieldCounter;
+    gotoxy(this->sett.getLength() * 2 + 5, 5);
+    std::cout << "   MaxopenFields: " << this->sett.getFullSize() - this->sett.getNumberOfMines();
+    gotoxy(this->sett.getLength() * 2 + 5, 6);
     std::cout << "}";
 }
 void Grid::displayLabel() const{
@@ -202,6 +207,7 @@ void Grid::openFields(int x, int y){
     this->board[this->getIndex(x, y)]->setVisit(true);
     this->board[this->getIndex(x, y)]->setColor(BROWN);
     this->board[this->getIndex(x, y)]->setBgC(BROWN);
+    this->openFieldCounter++;
 
     if(this->board[this->getIndex(x, y)]->getNumber() == 0){
         int bX = x + 1,
@@ -214,4 +220,8 @@ void Grid::openFields(int x, int y){
         if(this->inRange(x, bY) && this->board[this->getIndex(x, bY)]->canOpen()) this->openFields(x, bY);
         if(this->inRange(x, sY) && this->board[this->getIndex(x, sY)]->canOpen()) this->openFields(x, sY);
     }
+}
+bool Grid::checkWon() const{
+
+    return (this->openFieldCounter >= this->sett.getFullSize() - this->sett.getNumberOfMines());
 }
