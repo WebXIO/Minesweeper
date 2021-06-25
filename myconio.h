@@ -1,5 +1,4 @@
-#ifndef MYCONIO_H_INCLUDED
-#define MYCONIO_H_INCLUDED
+#pragma once
 
 const int BLACK = 0;
 const int BLUE = 1;
@@ -23,4 +22,3 @@ void setColorAndBackground(int ForgC, int BackC);
 void gotoxy(int x,int y);
 void setWindow(int topx, int topy, int bottomx, int bottomy, int forgc, int backc);
 
-#endif // MYCONIO_H_INCLUDED
