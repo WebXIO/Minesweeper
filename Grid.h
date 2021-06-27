@@ -3,6 +3,7 @@
 #include "Cell.h"
 #include "Settings.h"
 #include <string>
+#include "Timer.h"
 
 class Grid{
 public:
@@ -14,6 +15,10 @@ public:
     void switchFlag();
     bool checkField();
     bool checkWon() const;
+    void update();
+
+    void switchDevTools();
+    void switchShowBomb();
 
     void setLabel(std::string label);
 
@@ -22,6 +27,7 @@ public:
     void render() const;
 private:
     Cell* *board;
+    Timer timer;
 
     int currentX;
     int currentY;
@@ -30,6 +36,8 @@ private:
     int flagCounter;
     int openFieldCounter;
     bool showCursor;
+    bool showDevTools;
+    bool showAllBombs;
     std::string label;
 
     int getIndex(int x, int y) const;
@@ -38,8 +46,9 @@ private:
     void drawNumber(int x, int y, int number) const;
     void setRandomMines();
     int countBombs() const;
-    void showAllBombs();
+    void showBombs(bool state);
     void openFields(int x, int y);
     void setNumbers();
     void displayLabel() const;
+    void displayDevTools() const;
 };

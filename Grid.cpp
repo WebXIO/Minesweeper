@@ -21,6 +21,8 @@ Grid::Grid(Difficulty dif, std::string label) : sett(dif), label(label){
     this->setNumbers();
 
     this->showCursor = true;
+    this->showDevTools = false;
+    this->showAllBombs = false;
 }
 Grid::~Grid(){
     for(int i = 0; i < this->sett.getFullSize(); i++){
@@ -60,7 +62,7 @@ bool Grid::checkField(){
 
     if(this->board[this->getIndex(this->currentX, this->currentY)]->isMine()){
         this->showCursor = false;
-        this->showAllBombs();
+        this->showBombs(true);
         return true;
     }else if(!this->board[this->getIndex(this->currentX, this->currentY)]->isVisit()){
         this->openFields(this->currentX, this->currentY);
@@ -113,18 +115,11 @@ void Grid::render() const{
     }
 
     if(this->showCursor) this->drawBox(this->currentX + this->currentX + 2, this->currentY + 1, MAGENTA, this->board[this->getIndex(this->currentX, this->currentY)]->getBgC(), '+');
+
     gotoxy(this->sett.getLength() * 2 + 5, 1);
     std::cout << this->flagCounter << " / " << this->sett.getNumberOfMines() << " Flags ( " << (char) 178 << (char) 178 <<" )";
-    gotoxy(this->sett.getLength() * 2 + 5, 2);
-    std::cout << "Dev Tools {";
-    gotoxy(this->sett.getLength() * 2 + 5, 3);
-    std::cout << "   RightBombsCounter: " << this->rightBombCounter;
-    gotoxy(this->sett.getLength() * 2 + 5, 4);
-    std::cout << "   openFieldCounter: " << this->openFieldCounter;
-    gotoxy(this->sett.getLength() * 2 + 5, 5);
-    std::cout << "   MaxopenFields: " << this->sett.getFullSize() - this->sett.getNumberOfMines();
-    gotoxy(this->sett.getLength() * 2 + 5, 6);
-    std::cout << "}";
+
+    if(this->showDevTools) this->displayDevTools();
 }
 void Grid::displayLabel() const{
     for(int i = 0; i < (int)(this->label.length()); i++){
@@ -132,6 +127,48 @@ void Grid::displayLabel() const{
         std::cout << this->label[i];
     }
 }
+void Grid::update(){
+    this->timer.updateTime();
+    gotoxy(this->sett.getLength() * 2 + 5, 2);
+    std::cout << this->timer.toString();
+}
+void Grid::switchDevTools(){
+
+    if(this->showDevTools){
+        system("cls");
+        this->showDevTools = false;
+    }else{
+        this->showDevTools = true;
+    }
+}
+void Grid::switchShowBomb(){
+    if(this->showAllBombs){
+        this->showAllBombs = false;
+    }else{
+        this->showAllBombs = true;
+    }
+
+    this->showBombs(this->showAllBombs);
+}
+void Grid::displayDevTools() const{
+
+    gotoxy(this->sett.getLength() * 2 + 5, 4);
+    std::cout << "Dev Tools {";
+    gotoxy(this->sett.getLength() * 2 + 5, 5);
+    std::cout << "   RightBombsCounter: " << this->rightBombCounter;
+    gotoxy(this->sett.getLength() * 2 + 5, 6);
+    std::cout << "   openFieldCounter: " << this->openFieldCounter;
+    gotoxy(this->sett.getLength() * 2 + 5, 7);
+    std::cout << "   MaxopenFields: " << this->sett.getFullSize() - this->sett.getNumberOfMines();
+    gotoxy(this->sett.getLength() * 2 + 5, 8);
+    std::cout << "   CurrentCell: [ isMine: " << this->board[this->getIndex(this->currentX, this->currentY)]->isMine()
+                              <<" | isFlag: " << this->board[this->getIndex(this->currentX, this->currentY)]->isFlag()
+                              <<" | isVisit: "<< this->board[this->getIndex(this->currentX, this->currentY)]->isVisit()
+                              <<" | Number: " << this->board[this->getIndex(this->currentX, this->currentY)]->getNumber() << " ]";
+    gotoxy(this->sett.getLength() * 2 + 5, 9);
+    std::cout << "}";
+}
+
 void Grid::drawBox(int x, int y, int color, int bgC,char sign) const{
     setColorAndBackground(color, bgC);
     gotoxy(x, y);
@@ -170,13 +207,17 @@ void Grid::setRandomMines(){
 
     }
 }
-void Grid::showAllBombs(){
+void Grid::showBombs(bool state){
 
     for(int i = 0; i < this->sett.getFullSize(); i++){
 
         if(this->board[i]->isMine()){
-            this->board[i]->setColor(RED);
-            this->board[i]->setVisit(true);
+            if(state){
+                this->board[i]->setColor(RED);
+            }else{
+                this->board[i]->setColor(GREEN);
+            }
+            this->board[i]->setVisit(state);
         }
     }
     this->render();

@@ -84,7 +84,7 @@
 
 1624637842 d:\code_blocks\workspace\c++\minesweeper\myconio.h
 
-1624638403 source:d:\code_blocks\workspace\c++\minesweeper\main.cpp
+1624805800 source:d:\code_blocks\workspace\c++\minesweeper\main.cpp
 	<iostream>
 	<cstdio>
 	<cstdlib>
@@ -93,12 +93,14 @@
 	"Cell.h"
 	"Grid.h"
 	"myconio.h"
+	"Timer.h"
 
-1624638573 d:\code_blocks\workspace\c++\minesweeper\grid.h
+1624805765 d:\code_blocks\workspace\c++\minesweeper\grid.h
 	"myconio.h"
 	"Cell.h"
 	"Settings.h"
 	<string>
+	"Timer.h"
 
 1624476360 d:\code_blocks\workspace\c++\minesweeper\settings.h
 
@@ -113,7 +115,7 @@
 	<cstdlib>
 	<time.h>
 
-1624637652 source:d:\code_blocks\workspace\c++\minesweeper\grid.cpp
+1624805880 source:d:\code_blocks\workspace\c++\minesweeper\grid.cpp
 	"Grid.h"
 	"myconio.h"
 	<time.h>
@@ -128,4 +130,14 @@
 1624580697 source:d:\code_blocks\workspace\c++\minesweeper\stack.cpp
 	"Stack.h"
 	<iostream>
+
+1624804190 source:d:\code_blocks\workspace\c++\minesweeper\timer.cpp
+	"Timer.h"
+	<windows.h>
+	<time.h>
+	<cstdio>
+	<iostream>
+
+1624803582 d:\code_blocks\workspace\c++\minesweeper\timer.h
+	<string>
 
