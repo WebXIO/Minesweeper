@@ -42,6 +42,8 @@
 		<Unit filename="Settings.h" />
 		<Unit filename="Stack.cpp" />
 		<Unit filename="Stack.h" />
+		<Unit filename="Timer.cpp" />
+		<Unit filename="Timer.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="myconio.cpp" />
 		<Unit filename="myconio.h" />

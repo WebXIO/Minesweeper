@@ -38,6 +38,7 @@ private:
     bool showCursor;
     bool showDevTools;
     bool showAllBombs;
+    bool firstBomb;
     std::string label;
 
     int getIndex(int x, int y) const;

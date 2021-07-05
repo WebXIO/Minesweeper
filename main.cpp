@@ -61,7 +61,7 @@ int main() {
     hideCursor();
 
     char check;
-    Grid g(Professional);
+    Grid g(Beginner);
 
     while(check != 27 && !g.checkWon()){
         g.render();

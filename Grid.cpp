@@ -17,12 +17,10 @@ Grid::Grid(Difficulty dif, std::string label) : sett(dif), label(label){
     this->flagCounter = 0;
     this->openFieldCounter = 0;
 
-    this->setRandomMines();
-    this->setNumbers();
-
     this->showCursor = true;
     this->showDevTools = false;
     this->showAllBombs = false;
+    this->firstBomb = true;
 }
 Grid::~Grid(){
     for(int i = 0; i < this->sett.getFullSize(); i++){
@@ -58,6 +56,11 @@ void Grid::switchFlag(){
     }
 }
 bool Grid::checkField(){
+    if(this->firstBomb){
+        this->firstBomb = false;
+        this->setRandomMines();
+        this->setNumbers();
+    }
     if(this->board[this->getIndex(this->currentX, this->currentY)]->isFlag())return false;
 
     if(this->board[this->getIndex(this->currentX, this->currentY)]->isMine()){
@@ -117,7 +120,7 @@ void Grid::render() const{
     if(this->showCursor) this->drawBox(this->currentX + this->currentX + 2, this->currentY + 1, MAGENTA, this->board[this->getIndex(this->currentX, this->currentY)]->getBgC(), '+');
 
     gotoxy(this->sett.getLength() * 2 + 5, 1);
-    std::cout << this->flagCounter << " / " << this->sett.getNumberOfMines() << " Flags ( " << (char) 178 << (char) 178 <<" )";
+    std::cout << this->sett.getNumberOfMines() - this->flagCounter << " Flags ( " << (char) 178 << (char) 178 <<" )";
 
     if(this->showDevTools) this->displayDevTools();
 }
@@ -197,10 +200,22 @@ void Grid::setRandomMines(){
     srand(time(NULL));
 
     int index;
+    int y, x;
     for(int i = 0; i < this->sett.getNumberOfMines(); i++){
         index = rand() % this->sett.getFullSize() + 0;
-        if(this->board[index]->isMine()){
+        y = index / this->sett.getLength();
+        x = index % this->sett.getLength();
+        if(this->board[index]->isMine() || (this->currentX -1 == x && this->currentY - 1 == y)
+                                        || (this->currentX == x && this->currentY - 1 == y)
+                                        || (this->currentX + 1 == x && this->currentY - 1 == y)
+                                        || (this->currentX - 1 == x && this->currentY == y)
+                                        || (this->currentX == x && this->currentY == y)
+                                        || (this->currentX + 1 == x && this->currentY == y)
+                                        || (this->currentX -1 == x && this->currentY + 1 == y)
+                                        || (this->currentX == x && this->currentY + 1 == y)
+                                        || (this->currentX + 1 == x && this->currentY + 1 == y)){
             i--;
+
         }else{
             this->board[index]->setMine(true);
         }
@@ -223,6 +238,8 @@ void Grid::showBombs(bool state){
     this->render();
 }
 void Grid::setNumbers(){
+    int x = this->currentX;
+    int y = this->currentY;
 
     for(int i = 0; i < this->sett.getFullSize(); i++){
         this->currentY = i / this->sett.getLength();
@@ -238,8 +255,8 @@ void Grid::setNumbers(){
         }
     }
 
-    this->currentX = 0;
-    this->currentY = 0;
+    this->currentX = x;
+    this->currentY = y;
 }
 void Grid::setLabel(std::string label){
     this->label = label;
