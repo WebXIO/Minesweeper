@@ -73,19 +73,16 @@ bool Grid::checkField(){
     return false;
 
 }
-int Grid::countBombs() const{
+int Grid::countBombs(int x, int y) const{
     int counter = 0;
-
-    if(this->inRange(this->currentX - 1, this->currentY - 1) && this->board[this->getIndex(this->currentX - 1, this->currentY - 1)]->isMine()) counter++; //UP Left
-    if(this->inRange(this->currentX, this->currentY - 1)     && this->board[this->getIndex(this->currentX, this->currentY - 1)]->isMine()) counter++; //UP Middle
-    if(this->inRange(this->currentX + 1, this->currentY - 1) && this->board[this->getIndex(this->currentX + 1, this->currentY - 1)]->isMine()) counter++; //UP Right
-    if(this->inRange(this->currentX - 1, this->currentY)     && this->board[this->getIndex(this->currentX - 1, this->currentY)]->isMine() ) counter++; //Middle Left
-    if(this->inRange(this->currentX, this->currentY)         && this->board[this->getIndex(this->currentX, this->currentY)]->isMine() ) counter++; //Middle
-    if(this->inRange(this->currentX + 1, this->currentY)     && this->board[this->getIndex(this->currentX + 1, this->currentY)]->isMine()) counter++; //Middle Right
-    if(this->inRange(this->currentX - 1, this->currentY + 1) && this->board[this->getIndex(this->currentX - 1, this->currentY + 1)]->isMine()) counter++; //Down Left
-    if(this->inRange(this->currentX, this->currentY + 1)     && this->board[this->getIndex(this->currentX, this->currentY + 1)]->isMine()) counter++; //Down Middle
-    if(this->inRange(this->currentX + 1, this->currentY + 1) && this->board[this->getIndex(this->currentX + 1, this->currentY + 1)]->isMine()) counter++; //Down Right
-
+    if(this->board[this->getIndex(this->currentX, this->currentY)]->isMine()){
+        return -1;
+    }
+    for(int i = -1; i <= 1; i++){
+        for(int j = -1; j <= 1; j++){
+          if(this->inRange(i + x, j + y) && this->board[this->getIndex(i + x, j + y)]->isMine()) counter++;
+        }
+    }
     return counter;
 
 }
@@ -238,25 +235,19 @@ void Grid::showBombs(bool state){
     this->render();
 }
 void Grid::setNumbers(){
-    int x = this->currentX;
-    int y = this->currentY;
 
     for(int i = 0; i < this->sett.getFullSize(); i++){
-        this->currentY = i / this->sett.getLength();
-        this->currentX = i % this->sett.getLength();
+        int y = i / this->sett.getLength();
+        int x = i % this->sett.getLength();
 
         if(!this->board[i]->isMine()){
-            if(this->countBombs() > 0){
-                //this->board[this->getIndex(this->currentX, this->currentY)]->setColor(BROWN);
-                this->board[this->getIndex(this->currentX, this->currentY)]->setCurrentSign(this->countBombs() + 48);
-                this->board[this->getIndex(this->currentX, this->currentY)]->setNumber(this->countBombs());
-
+            int bombs = this->countBombs(x, y);
+            if(bombs > 0){
+                this->board[this->getIndex(x, y)]->setCurrentSign(bombs + 48);
+                this->board[this->getIndex(x, y)]->setNumber(bombs);
             }
         }
     }
-
-    this->currentX = x;
-    this->currentY = y;
 }
 void Grid::setLabel(std::string label){
     this->label = label;
@@ -274,16 +265,34 @@ void Grid::openFields(int x, int y){
     this->openFieldCounter++;
 
     if(this->board[this->getIndex(x, y)]->getNumber() == 0){
-        int bX = x + 1,
-            sX = x - 1,
-            bY = y + 1,
-            sY = y - 1;
 
-        if(this->inRange(bX, y) && this->board[this->getIndex(bX, y)]->canOpen()) this->openFields(bX, y);
-        if(this->inRange(sX, y) && this->board[this->getIndex(sX, y)]->canOpen()) this->openFields(sX, y);
-        if(this->inRange(x, bY) && this->board[this->getIndex(x, bY)]->canOpen()) this->openFields(x, bY);
-        if(this->inRange(x, sY) && this->board[this->getIndex(x, sY)]->canOpen()) this->openFields(x, sY);
+        for(int i = -1; i <= 1; i++){
+            for(int j = -1; j <= 1; j++){
+              if(this->inRange(i + x, j + y) && this->board[this->getIndex(i + x, j + y)]->canOpen()) this->openFields(i + x, j + y);
+            }
+        }
     }
+}
+void Grid::restart() {
+    for(int i = 0; i < this->sett.getFullSize(); i++){
+        delete this->board[i];
+    }
+    delete[] board;
+
+    this->board = new Cell*[this->sett.getFullSize()];
+    for(int i = 0; i < this->sett.getFullSize(); i++){
+        this->board[i]  = new Cell(0, false);
+    }
+    this->currentX = 0;
+    this->currentY = 0;
+    this->rightBombCounter = 0;
+    this->flagCounter = 0;
+    this->openFieldCounter = 0;
+
+    this->showCursor = true;
+    this->showDevTools = false;
+    this->showAllBombs = false;
+    this->firstBomb = true;
 }
 bool Grid::checkWon() const{
 

@@ -43,6 +43,8 @@ char move(Grid &g){
     case '.':
         g.switchShowBomb();
         break;
+    case 'r':
+        g.restart();
     }
 
     return sign;
@@ -55,26 +57,31 @@ void hideCursor(){
    info.bVisible = FALSE;
    SetConsoleCursorInfo(consoleHandle, &info);
 }
-
 int main() {
 
     hideCursor();
-
     char check;
-    Grid g(Beginner);
+    Grid g(Professional);
 
-    while(check != 27 && !g.checkWon()){
+    do{
+        while(check != 27 && !g.checkWon()){
+            g.render();
+            check = move(g);
+        }
+
+
+        system("cls");
+        if(g.checkWon())
+            g.setLabel("G A M E  O V E R ! W I N");
+        else
+            g.setLabel("G A M E  O V E R ! L O S E");
         g.render();
-        check = move(g);
-    }
 
-
-    system("cls");
-    if(g.checkWon())
-        g.setLabel("G A M E  O V E R ! W I N");
-    else
-        g.setLabel("G A M E  O V E R ! L O S E");
-    g.render();
-
-    getch();
+        check = getch();
+        if(check == 'r'){
+            g.restart();
+            g.setLabel("M I N E S W E E P E R");
+            system("cls");
+        }
+    }while(check == 'r');
 }

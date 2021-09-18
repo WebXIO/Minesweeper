@@ -20,6 +20,8 @@ public:
     void switchDevTools();
     void switchShowBomb();
 
+    void restart();
+
     void setLabel(std::string label);
 
     std::string getLabel() const;
@@ -46,7 +48,7 @@ private:
     void drawBox(int x, int y, int color = GREEN, int bgC = GREEN, char sign = 219) const;
     void drawNumber(int x, int y, int number) const;
     void setRandomMines();
-    int countBombs() const;
+    int countBombs(int x, int y) const;
     void showBombs(bool state);
     void openFields(int x, int y);
     void setNumbers();
