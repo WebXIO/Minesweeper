@@ -61,7 +61,11 @@ int main() {
 
     hideCursor();
     char check;
+<<<<<<< Updated upstream
     Grid g(Professional);
+=======
+    Grid g(Difficulty::Medium);
+>>>>>>> Stashed changes
 
     do{
         while(check != 27 && !g.checkWon()){

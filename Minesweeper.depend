@@ -141,3 +141,71 @@
 1624803582 d:\code_blocks\workspace\c++\minesweeper\timer.h
 	<string>
 
+1631792440 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\cell.cpp
+	"Cell.h"
+	"myconio.h"
+	<cstring>
+	<cstdio>
+
+1631792440 c:\users\gabri\documents\github\ulrichprojects\minesweeper\cell.h
+	<string>
+
+1631792440 c:\users\gabri\documents\github\ulrichprojects\minesweeper\myconio.h
+
+1631792440 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\gamemanager.cpp
+
+1633509711 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\grid.cpp
+	"Grid.h"
+	"myconio.h"
+	<time.h>
+	<windows.h>
+	<iostream>
+	<bits/stdc++.h>
+
+1633509609 c:\users\gabri\documents\github\ulrichprojects\minesweeper\grid.h
+	"myconio.h"
+	"Cell.h"
+	"Settings.h"
+	<string>
+	"Timer.h"
+
+1631792440 c:\users\gabri\documents\github\ulrichprojects\minesweeper\settings.h
+
+1631792440 c:\users\gabri\documents\github\ulrichprojects\minesweeper\timer.h
+	<string>
+
+1631792440 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\myconio.cpp
+	<windows.h>
+	<cstdio>
+	<cstdlib>
+	"myconio.h"
+
+1631792440 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\settings.cpp
+	"Settings.h"
+	<cstdlib>
+	<time.h>
+
+1631792440 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\stack.cpp
+	"Stack.h"
+	<iostream>
+
+1631792440 c:\users\gabri\documents\github\ulrichprojects\minesweeper\stack.h
+
+1631792440 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\timer.cpp
+	"Timer.h"
+	<windows.h>
+	<time.h>
+	<cstdio>
+	<iostream>
+
+1633516505 source:c:\users\gabri\documents\github\ulrichprojects\minesweeper\main.cpp
+	<iostream>
+	<cstdio>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	"Cell.h"
+	"Grid.h"
+	"myconio.h"
+	"Timer.h"
+

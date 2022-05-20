@@ -114,7 +114,7 @@ void Grid::render() const{
         }
     }
 
-    if(this->showCursor) this->drawBox(this->currentX + this->currentX + 2, this->currentY + 1, MAGENTA, this->board[this->getIndex(this->currentX, this->currentY)]->getBgC(), '+');
+    if(this->showCursor) this->drawBox(this->currentX + this->currentX + 2, this->currentY + 1, MAGENTA, this->board[this->getIndex(this->currentX, this->currentY)]->getBgC(), '+', (!this->board[this->getIndex(this->currentX, this->currentY)]->isVisit()) ? 0 : this->board[this->getIndex(this->currentX, this->currentY)]->getNumber());
 
     gotoxy(this->sett.getLength() * 2 + 5, 1);
     std::cout << this->sett.getNumberOfMines() - this->flagCounter << " Flags ( " << (char) 178 << (char) 178 <<" )";
@@ -169,10 +169,13 @@ void Grid::displayDevTools() const{
     std::cout << "}";
 }
 
-void Grid::drawBox(int x, int y, int color, int bgC,char sign) const{
+void Grid::drawBox(int x, int y, int color, int bgC, char sign, int number) const{
     setColorAndBackground(color, bgC);
     gotoxy(x, y);
-    std::cout << sign << sign;
+    if(number <= 0)
+        std::cout << sign << sign;
+    else
+        std::cout << number << sign;
     setColorAndBackground(WHITE, BLACK);
 }
 void Grid::drawNumber(int x, int y, int number) const{
@@ -265,6 +268,7 @@ void Grid::openFields(int x, int y){
     this->openFieldCounter++;
 
     if(this->board[this->getIndex(x, y)]->getNumber() == 0){
+<<<<<<< Updated upstream
 
         for(int i = -1; i <= 1; i++){
             for(int j = -1; j <= 1; j++){
@@ -276,6 +280,23 @@ void Grid::openFields(int x, int y){
 void Grid::restart() {
     for(int i = 0; i < this->sett.getFullSize(); i++){
         delete this->board[i];
+=======
+        int bX = x + 1,
+            sX = x - 1,
+            bY = y + 1,
+            sY = y - 1;
+
+        if(this->inRange(bX, y) && this->board[this->getIndex(bX, y)]->canOpen()) this->openFields(bX, y);
+        if(this->inRange(sX, y) && this->board[this->getIndex(sX, y)]->canOpen()) this->openFields(sX, y);
+
+        if(this->inRange(x, bY) && this->board[this->getIndex(x, bY)]->canOpen()) this->openFields(x, bY);
+        if(this->inRange(sX, bY) && this->board[this->getIndex(sX, bY)]->canOpen()) this->openFields(sX, bY);
+        if(this->inRange(bX, bY) && this->board[this->getIndex(bX, bY)]->canOpen()) this->openFields(bX, bY);
+
+        if(this->inRange(x, sY) && this->board[this->getIndex(x, sY)]->canOpen()) this->openFields(x, sY);
+        if(this->inRange(sX, sY) && this->board[this->getIndex(sX, sY)]->canOpen()) this->openFields(sX, sY);
+        if(this->inRange(bX, sY) && this->board[this->getIndex(bX, sY)]->canOpen()) this->openFields(bX, sY);
+>>>>>>> Stashed changes
     }
     delete[] board;
 
